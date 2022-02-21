@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block bodyblock %}
+{% if registered %}
+<div class="alert alert-success">Account Created Successfully</div>
+{% else %}
+<h4 class="text-center">{{sample}}</h4>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-lg-6 col-md-6">
+            {{user_form|crispy}}
+        </div>
+        <div class="col-lg-6 col-md-6">
+            {{donor_form|crispy}}
+        </div>
+    </div>
+    
+    <input type="submit" value="Register" class="btn btn-success">
+</form>
+{% endif %}
+{% endblock %}

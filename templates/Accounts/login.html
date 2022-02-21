@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block bodyblock %}
+<h3>Please Login</h3>
+<form method="POST">
+    <label for="username">Username:</label>
+    <input type="text" name="username" placeholder="Enter Username" required class="form-control">
+    <label for="password">Password: </label>
+    <input type="password" name="password" id="password" placeholder="Enter Password" required class="form-control">
+    {% csrf_token %}
+    <br>
+    <input type="submit" value="Login" class="btn btn-success">
+</form>
+{% endblock %}

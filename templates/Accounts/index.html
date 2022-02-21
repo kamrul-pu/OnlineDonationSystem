@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block bodyblock %}
+{% if user.is_authenticated %}
+<a href="{% url 'accounts:userLogout' %}" class="btn btn-primary">Logout</a>
+{% else %}
+<a href="{% url 'accounts:userLogin' %}" class="btn btn-primary">Login</a>
+<a href="{% url 'accounts:signupDonar' %}" class="btn btn-primary">Be A Doner</a>
+<a href="{% url 'accounts:signupVolunteer' %}" class="btn btn-primary">Be A Volunteer</a>
+{% endif %}
+{% endblock %}
