@@ -1,10 +1,13 @@
+import profile
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from Accounts.forms import UserForm,DonorForm,VolunteerForm
+from .models import Donor
 # Create your views here.
+from OnlineDonationSystem.views import home
 
 def signupDonar(request):
     registered = False
@@ -36,6 +39,7 @@ def signupVolunteer(request):
         if user_form.is_valid() and volunteer_form.is_valid():
             user = user_form.save()
             user.set_password(user.password)
+            user.save()
             volunteer_info = volunteer_form.save(commit=False)
             volunteer_info.volunteer = user
             if 'profile_pic' in request.FILES:
@@ -54,14 +58,17 @@ def userLogin(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(username=username,password=password)
+        print('user = ',user)
+        # print(user.donar)
         if user:
             if user.is_active:
                 login(request,user)
                 #this changed url also
-                return HttpResponse("Login SuccessFull")
+                # return HttpResponse("Login SuccessFull")
                 #This two doesnot change url
                 # return render(request,'index.html',context={})
-                # return index(request)
+                return userProfile(request)
+
             else:
                 return HttpResponse("User is not Active")
         else:
@@ -72,4 +79,8 @@ def userLogin(request):
 @login_required
 def userLogout(request):
     logout(request)
-    return HttpResponse("logout Successfull")
+    return home(request)
+
+@login_required
+def userProfile(request):
+    return render(request,'accounts/profile.html')
