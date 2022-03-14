@@ -1,65 +1,57 @@
+from multiprocessing import context
 import profile
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
-from Accounts.forms import UserForm,DonorForm,VolunteerForm
-from .models import Donor
+from Accounts.forms import UserForm,ProfileForm,ProfileUpdateForm
+from .models import Profile
 # Create your views here.
 from OnlineDonationSystem.views import home
 
-def signupDonar(request):
+def RegisterUser(request):
     registered = False
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
-        donor_form = DonorForm(data=request.POST)
-        if user_form.is_valid() and donor_form.is_valid():
+        profile_form = ProfileForm(data=request.POST)
+        if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
             user.set_password(user.password)
             user.save()
-            donor_info = donor_form.save(commit=False)
-            donor_info.donor = user
+            profile_info = profile_form.save(commit=False)
+            profile_info.profile = user
             if 'profile_pic' in request.FILES:
-                donor_info.profile_pic = request.FILES['profile_pic']
-            donor_info.save()
+                profile_info.profile_pic = request.FILES['profile_pic']
+            profile_info.save()
             registered = True
             return HttpResponse("Account Created SuccessFully")
     else:
         user_form = UserForm()
-        donor_form = DonorForm()
-    diction = {'title':'Donor Registration','user_form':user_form,'donor_form':donor_form,'registered':registered,'sample':'Donor Registration'}
+        profile_form = ProfileForm()
+    diction = {'title':'Donor Registration','user_form':user_form,'profile_form':profile_form,'registered':registered,'sample':'User Registration'}
     return render(request,'Accounts/register.html',context=diction)
+@login_required
+def UserUpdate(request,pk):
+    profile = Profile.objects.get(profile=pk)
+    # profile_form = ProfileForm(instance=profile)
+    profile_form = ProfileUpdateForm(instance=profile)
+    if request.method == 'POST':
+        profile_form = ProfileUpdateForm(instance=profile,data=request.POST)
+        if profile_form.is_valid():
+            new_profile = profile_form.save(commit=False)
+            if 'profile_pic' in request.FILES:
+                new_profile.profile_pic = request.FILES['profile_pic']
+            new_profile.save()
+            return userProfile(request)
+    return render(request,'Accounts/userUpdate.html',context = {'profile_form':profile_form})
 
-def signupVolunteer(request):
-    registered = False
-    if request.method == 'POST':
-        user_form = UserForm(data=request.POST)
-        volunteer_form = VolunteerForm(data=request.POST)
-        if user_form.is_valid() and volunteer_form.is_valid():
-            user = user_form.save()
-            user.set_password(user.password)
-            user.save()
-            volunteer_info = volunteer_form.save(commit=False)
-            volunteer_info.volunteer = user
-            if 'profile_pic' in request.FILES:
-                volunteer_info.profile_pic = request.FILES['profile_pic']
-            volunteer_info.save()
-            registered = True
-            return HttpResponse("Account Created SuccessFully")
-    else:
-        user_form = UserForm()
-        volunteer_form = VolunteerForm()
-    diction = {'title':'Volunteer Registration','user_form':user_form,'donor_form':volunteer_form,'registered':registered,'sample':'Volunteer Registration'}
-    return render(request,'Accounts/register.html',context=diction)
 
 def userLogin(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(username=username,password=password)
-        print('user = ',user)
-        # print(user.donar)
         if user:
             if user.is_active:
                 login(request,user)

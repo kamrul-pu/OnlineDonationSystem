@@ -2,14 +2,16 @@
 {% load static %}
 {% block bodyblock %}
 <h2>This is user profile</h2>
-{% if user.donar %}
-<p>User is Donor</p>
-{% elif user.volunteer %}
-<p>User is Volunteer</p>
+<p>{{user.profile.userType}}</p>
+{% if user.profile.userType == 1 %}
+<p>User is Donor1</p>
+{% elif user.profile.userType == 2 %}
+<p>User is Volunteer2</p>
 {% else %}
 <p>User is admin</p>
 {% endif %}
 <h3>Name: {{user.first_name}} {{user.last_name}}</h3>
+<a href="{% url 'accounts:updateProfile' pk=user.pk %}" class="btn btn-warning">Update</a>
 <!-- <p>{{user.donar.profile_pic}}</p> -->
 <!-- <img src="/media/{{user.donar.profile_pic}}" alt="" width="200px" height="auto"> -->
 <h3>Address: </h3>

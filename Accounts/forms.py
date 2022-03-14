@@ -1,7 +1,8 @@
 
+from csv import excel
 from django.contrib.auth.models import User
 from django import forms
-from Accounts.models import Donor,Volunteer
+from Accounts.models import Profile
 
 class UserForm(forms.ModelForm):
     # username = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter Username. Letters, digits and @/./+/-/_ only.'}))
@@ -11,14 +12,26 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ('first_name','last_name','username','email','password')
 
-class DonorForm(forms.ModelForm):
-    donorAddress = forms.CharField(label="Donor Address",widget=forms.TextInput(attrs={'type':'textarea','rows':5,'cols':20}))
-    nationalId = forms.CharField(label="National ID")
-    class Meta:
-        model = Donor
-        exclude = ('donor','isDonor',)
+# class DonorForm(forms.ModelForm):
+#     donorAddress = forms.CharField(label="Donor Address",widget=forms.TextInput(attrs={'type':'textarea','rows':5,'cols':20}))
+#     nationalId = forms.CharField(label="National ID")
+#     class Meta:
+#         model = Donor
+#         exclude = ('donor','isDonor',)
 
-class VolunteerForm(forms.ModelForm):
+# class VolunteerForm(forms.ModelForm):
+#     class Meta:
+#         model = Volunteer
+#         exclude = ('volunteer','isVolunteer',)
+    
+class ProfileForm(forms.ModelForm):
+    address = forms.CharField(label="Donor Address",widget=forms.TextInput(attrs={'type':'textarea','rows':5,'cols':20,'placeholder':'Enter Address'}))
     class Meta:
-        model = Volunteer
-        exclude = ('volunteer','isVolunteer',)
+        model = Profile
+        exclude = ("profile","verified",)
+
+class ProfileUpdateForm(forms.ModelForm):
+    address = forms.CharField(label="Donor Address",widget=forms.TextInput(attrs={'type':'textarea','rows':5,'cols':20,'placeholder':'Enter Address'}))
+    class Meta:
+        model = Profile
+        exclude = ("profile","verified",)

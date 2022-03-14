@@ -1,8 +1,7 @@
 from django.contrib import admin
-from Accounts.models import Donor,Volunteer,District,Division
+from Accounts.models import District,Division,Profile
 # Register your models here.
 
-admin.site.register(Donor)
-admin.site.register(Volunteer)
 admin.site.register(District)
 admin.site.register(Division)
+admin.site.register(Profile)
