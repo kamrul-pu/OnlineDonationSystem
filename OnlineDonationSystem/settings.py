@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'Accounts',
     'crispy_forms',
     'django_cleanup.apps.CleanupConfig',
+    'AppDonation',
+    'AppVolunteer',
+    'AppFeedback',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [

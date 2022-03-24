@@ -47,6 +47,9 @@
                 
                 {% if user.is_authenticated %}
                 <li class="nav-item">
+                  <a class="nav-link text-primary " href="{% url 'appFeedback:feedback' %}">Feedback</a>
+              </li>
+                <li class="nav-item">
                     <a class="nav-link text-primary" href="{% url 'accounts:userProfile' %}">{{user.username}}</a>
                 </li>
                 <li class="nav-item">

@@ -1,5 +1,4 @@
-from multiprocessing import context
-import profile
+
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth import login,logout,authenticate
