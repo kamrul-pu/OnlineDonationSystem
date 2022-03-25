@@ -16,7 +16,7 @@ def feedback(request):
             feedback = feedback_form.save(commit=False)
             feedback.user = request.user
             feedback.save()
-            return HttpResponse("Feedback Added successfully!")
+            return HttpResponseRedirect(reverse('appFeedback:feedback'))
     feedback_form = FeedbackForm()
     diction = {'title':'User Feedback','feedback_form':feedback_form,'feedbacks':feedbacks}
     return render(request,'Feedback/feedback.html',context = diction)

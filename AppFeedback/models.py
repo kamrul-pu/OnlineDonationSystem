@@ -10,6 +10,9 @@ class Feedback(models.Model):
 
     class Meta:
         ordering = ('-feedbackDate',)
+    
+    def __str__(self):
+        return f"{self.user} {self.feedback}"
 
 class Likes(models.Model):
     feedback = models.ForeignKey(Feedback,on_delete=models.CASCADE,related_name='like_feedback')
