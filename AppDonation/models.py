@@ -10,10 +10,11 @@ class Category(models.Model):
 class Donations(models.Model):
     donationCategory = models.ForeignKey(Category,on_delete=models.CASCADE)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
+    productName = models.CharField(max_length=50,blank=False,null=False)
     description = models.TextField(max_length=200)
     createDate = models.DateTimeField(auto_now_add=True)
     updateDate = models.DateTimeField(auto_now=True)
 
 
     def __str__(self):
-        return f"{self.donationCategory} {self.user} {self.quantity}"
+        return f"{self.donationCategory} {self.user} {self.productName}"

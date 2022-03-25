@@ -1,9 +1,10 @@
-
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
+from django.urls import reverse
 from django.shortcuts import render
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib import messages
 from Accounts.forms import UserForm,ProfileForm,ProfileUpdateForm
 from .models import Profile
 # Create your views here.
@@ -24,7 +25,9 @@ def RegisterUser(request):
                 profile_info.profile_pic = request.FILES['profile_pic']
             profile_info.save()
             registered = True
-            return HttpResponse("Account Created SuccessFully")
+            messages.success(request,"Account Created Successfully")
+            login(request,user)
+            return userProfile(request)
     else:
         user_form = UserForm()
         profile_form = ProfileForm()
@@ -42,11 +45,13 @@ def UserUpdate(request,pk):
             if 'profile_pic' in request.FILES:
                 new_profile.profile_pic = request.FILES['profile_pic']
             new_profile.save()
-            return userProfile(request)
+            return HttpResponseRedirect(reverse('accounts:userProfile'))
     return render(request,'Accounts/userUpdate.html',context = {'profile_form':profile_form})
 
 
 def userLogin(request):
+    msg = False
+    
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -54,23 +59,21 @@ def userLogin(request):
         if user:
             if user.is_active:
                 login(request,user)
-                #this changed url also
-                # return HttpResponse("Login SuccessFull")
-                #This two doesnot change url
-                # return render(request,'index.html',context={})
-                return userProfile(request)
-
+                return HttpResponseRedirect(reverse('accounts:userProfile'))
             else:
-                return HttpResponse("User is not Active")
+                messages.info(request,"User is not Active")
+                return HttpResponseRedirect(reverse(home))
         else:
-            return HttpResponse("Login details are wrong")
-    else:
-        return render(request,'Accounts/login.html',context={})
+            msg = True
+            messages.error(request,"Login Details Are Wrong")
+            # return HttpResponseRedirect(reverse('accounts:userLogin'))
+    diction = {'title':'User Login Page','msg':msg}
+    return render(request,'Accounts/login.html',context=diction)
     
 @login_required
 def userLogout(request):
     logout(request)
-    return home(request)
+    return HttpResponseRedirect(reverse(home))
 
 @login_required
 def userProfile(request):

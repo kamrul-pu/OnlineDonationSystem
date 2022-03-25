@@ -29,12 +29,16 @@
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-                    <img src="/media/{{user.profile.profile_pic}}" alt="Admin" class="rounded-circle" width="150">
+                    <img src="/media/{{user.profile.profile_pic}}" alt="Admin" class="rounded-circle" width="150" height="150px" style="object-fit: cover;">
                     <div class="mt-3">
                       <h4>{{user.first_name}} {{user.last_name}}</h4>
                       <p class="text-secondary mb-1">Type: {% if user.profile.userType == 1 %} Donor{% elif user.profile.userType == 2 %}Volunteer{% else %}admin{% endif %}</p>
                       <p class="text-muted font-size-sm">District: {{user.profile.district}}</p>
-                      <button class="btn btn-primary">Follow</button>
+                      {% if user.profile.userType == 1 %}
+                      <a href="{% url 'appDonation:donation' %}" class="btn btn-primary">Donate Now</a>
+                      {% elif user.profile.userType == 2  %} 
+                      <a href="" class="btn btn-outline-primary">View Donation</a>
+                      {% endif %}
                       <button class="btn btn-outline-primary">Message</button>
                     </div>
                   </div>
@@ -73,10 +77,10 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">{{user.profile.address}}</h6>
+                      <h6 class="mb-0">Address</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      Bay Area, San Francisco, CA
+                        {{user.profile.address}}
                     </div>
                   </div>
                   <hr>

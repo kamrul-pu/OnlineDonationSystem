@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block bodyblock %}
+<h3>Make Donations</h3>
+<form action="" method="POST">
+    {% csrf_token %}
+    {{donation_form|crispy}}
+    <input type="submit" value="Donate" class="btn btn-success">
+</form>
+{% endblock %}

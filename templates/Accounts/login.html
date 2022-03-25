@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
 {% block bodyblock %}
 <h3>Please Login</h3>
+{% if msg %}
+<div class="alert alert-warning">
+    {% for message in messages %}
+    {{message}}
+    {% endfor %}
+</div>
+{% else %}
 <form method="POST">
     <label for="username">Username:</label>
     <input type="text" name="username" placeholder="Enter Username" required class="form-control">
@@ -10,4 +17,5 @@
     <br>
     <input type="submit" value="Login" class="btn btn-success">
 </form>
+{% endif %}
 {% endblock %}
