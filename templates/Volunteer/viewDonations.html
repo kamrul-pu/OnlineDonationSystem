@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block bodyblock %}
+<h3>Donated Product</h3>
+<div class="row">
+    <div class="col-10">
+        <table class="table table-bordered">
+            <tr>
+                <th>#</th>
+                <th>Product Name</th>
+                <th>Product Description</th>
+                <th>Donate Date</th>
+                <th>Status</th>
+            </tr>
+            {% for donation in donations %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{donation.productName}}</td>
+                <td>{{donation.description}}</td>
+                <td>{{donation.createDate}}</td>
+                <td>{{donation.status}}</td>
+                <p>{{donation}}</p>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

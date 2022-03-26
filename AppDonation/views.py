@@ -29,13 +29,13 @@ def Dontaion(request):
         return HttpResponseRedirect(reverse('accounts:userProfile'))
     return render(request,'Donor/donation.html',context=diction)
 
-# @login_required
-# def myDonations(requset,pk):
-#     # user = User.objects.get(user=request.user)
-#     # donations = Donations.objects.filter(user_id=pk)
-#     donations = Donations.objects.all()
-#     diction = {'donations':donations}
-#     return render(request,'accounts/profile.html',context=diction)
+@login_required
+def myDonations(requset,pk):
+    # user = User.objects.get(user=request.user)
+    # donations = Donations.objects.filter(user_id=pk)
+    donations = Donations.objects.all()
+    diction = {'donations':donations}
+    return render(request,'accounts/profile.html',context=diction)
 
 @login_required
 def updateDonation(request,pk):

@@ -41,7 +41,7 @@ document.alert("Please login in admin panel")
                       <a href="{% url 'appDonation:donation' %}" class="btn btn-primary">Donate Now</a>
                       <a href="{% url 'appDonation:myDonations' pk=user.pk %}" class="btn btn-primary">My Donations</a>
                       {% elif user.profile.userType == 2  %} 
-                      <a href="" class="btn btn-outline-primary">View Donation</a>
+                      <a href="{% url 'appVolunteer:viewDonors' %}" class="btn btn-outline-primary">View Donors</a>
                       {% endif %}
                       <!-- <button class="btn btn-outline-primary">Message</button> -->
                     </div>
