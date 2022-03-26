@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.http import HttpResponse,HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import render
@@ -6,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from Accounts.forms import UserForm,ProfileForm,ProfileUpdateForm
+from AppDonation.models import Donations
 from .models import Profile
 # Create your views here.
 from OnlineDonationSystem.views import home
@@ -65,7 +67,7 @@ def userLogin(request):
                 return HttpResponseRedirect(reverse(home))
         else:
             msg = True
-            messages.error(request,"Login Details Are Wrong")
+            messages.error(request,"Login Details Are Wrong.Please Login Again")
             # return HttpResponseRedirect(reverse('accounts:userLogin'))
     diction = {'title':'User Login Page','msg':msg}
     return render(request,'Accounts/login.html',context=diction)
@@ -77,4 +79,16 @@ def userLogout(request):
 
 @login_required
 def userProfile(request):
-    return render(request,'accounts/profile.html')
+    msg1 = False
+    if request.user.is_superuser:
+        msg=True
+        # pass
+    elif request.user.profile.userType==1:
+        # return HttpResponse("Donor")
+        pass
+    elif request.user.profile.userType==2:
+        # return HttpResponse("Volunteer")
+        pass
+    donations = Donations.objects.all()
+    diction = {'donations':donations,'msg1':msg1}
+    return render(request,'accounts/profile.html',context=diction)

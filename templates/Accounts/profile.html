@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 <!-- {% load static %} -->
 {% block bodyblock %}
+{% if msg1 %}
+document.alert("Please login in admin panel")
+{% endif %}
 <div class="row">
     <!-- {% for product in object_list %} -->
     <div class="col-md-6 col-sm-12 col-lg-3">
@@ -36,10 +39,11 @@
                       <p class="text-muted font-size-sm">District: {{user.profile.district}}</p>
                       {% if user.profile.userType == 1 %}
                       <a href="{% url 'appDonation:donation' %}" class="btn btn-primary">Donate Now</a>
+                      <a href="{% url 'appDonation:myDonations' pk=user.pk %}" class="btn btn-primary">My Donations</a>
                       {% elif user.profile.userType == 2  %} 
                       <a href="" class="btn btn-outline-primary">View Donation</a>
                       {% endif %}
-                      <button class="btn btn-outline-primary">Message</button>
+                      <!-- <button class="btn btn-outline-primary">Message</button> -->
                     </div>
                   </div>
                 </div>
@@ -77,6 +81,15 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
+                      <h6 class="mb-0">District</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        {{user.profile.district}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
                       <h6 class="mb-0">Address</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
@@ -95,4 +108,41 @@
           </div>
         </div>
     </div>
+    <div class="container">
+      {% if user.profile.userType == 1 %}
+      <table class="table table-bordered">
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Product Category</th>
+          <th>Product Details</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Update/Delete</th>
+        </tr>
+        {% for data in user.donations.all %}
+        {% if not data.distributed %}
+        <tr>
+          <td>{{forloop.counter}}</td>
+          <td>{{data.productName}}</td>
+          <td>{{data.donationCategory}}</td>
+          <td>{{data.description}}</td>
+          <td>{{data.createDate|date:'M d,Y'}}</td>
+          <td>{{data.status}}</td>
+          <td>
+            <a href="{% url 'appDonation:updateDonation' pk=data.id %}" class="btn btn-warning btn-sm" >Update</a>
+            
+            <a href="{% url 'appDonation:deleteDonation' pk=data.id %}" class="btn btn-danger btn-sm" >Delete</a>
+          </td>
+          <!-- <td>{{data.distributed}}</td> -->
+        </tr>
+        {% endif %}
+        {%  endfor %}
+      </table>
+      {% endif %}
+    </div>
+
+    <!-- {% for row in donations %}
+          <tr>{{row}}</tr>
+          {% endfor %} -->
 {% endblock %}

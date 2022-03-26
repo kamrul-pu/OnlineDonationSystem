@@ -11,4 +11,10 @@ class DonationForm(forms.ModelForm):
     class Meta:
         model = Donations
         # fields = "__all__"
-        exclude = ('user','district','supplied',)
+        exclude = ('user','district','distributed',)
+
+class DonationUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Donations
+        # fields = "__all__"
+        exclude = ('user','district','distributed',)
