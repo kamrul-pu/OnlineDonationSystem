@@ -16,6 +16,7 @@ def Dontaion(request):
             if donation_form.is_valid():
                 donations = donation_form.save(commit = False)
                 donations.user = request.user
+                donations.district = request.user.profile.district
                 donation_form.save()
                 return HttpResponse("Donation Added")
         donation_form = DonationForm()

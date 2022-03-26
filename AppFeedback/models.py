@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 class Feedback(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
+    feedbackTopic = models.CharField(max_length=50,blank=True,null=True)
     feedback = models.TextField(max_length=200)
     feedbackDate = models.DateTimeField(auto_now_add=True)
     updateDate = models.DateTimeField(auto_now=True)
