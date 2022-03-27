@@ -89,6 +89,6 @@ def userProfile(request):
     elif request.user.profile.userType==2:
         # return HttpResponse("Volunteer")
         pass
-    donations = Donations.objects.all()
-    diction = {'donations':donations,'msg1':msg1}
+    
+    diction = {'donations':'User Profile'}
     return render(request,'accounts/profile.html',context=diction)

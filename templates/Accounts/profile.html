@@ -39,7 +39,8 @@ document.alert("Please login in admin panel")
                       <p class="text-muted font-size-sm">District: {{user.profile.district}}</p>
                       {% if user.profile.userType == 1 %}
                       <a href="{% url 'appDonation:donation' %}" class="btn btn-primary">Donate Now</a>
-                      <a href="{% url 'appDonation:myDonations' pk=user.pk %}" class="btn btn-primary">My Donations</a>
+                      <!-- <a href="{% url 'appDonation:myDonations' pk=user.pk %}" class="btn btn-primary">My Donations</a> -->
+                      <a href="{% url 'appDonation:viewVolunteer' %}" class="btn btn-primary">View Volunteer</a>
                       {% elif user.profile.userType == 2  %} 
                       <a href="{% url 'appVolunteer:viewDonors' %}" class="btn btn-outline-primary">View Donors</a>
                       {% endif %}

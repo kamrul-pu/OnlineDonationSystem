@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block bodyblock %}
-<h3>Display All Donors to the locations</h3>
+<h3>Display All Volunteer to the locations</h3>
 <div class="row">
     <div class="col-10">
         <table class="table table-bordered">
@@ -11,13 +11,13 @@
                 <th>View Profile</th>
                 <th>Address</th>
                 <th>Phone</th>
-                <th>View Donation</th>
+                <!-- <th>View Donation</th> -->
             </tr>
-            {% for donor in donors %}
+            {% for volunteer in volunteers %}
             <tr>
                 <td>{{forloop.counter}}</td>
-                <td>{{donor.profile.first_name}} {{donor.profile.last_name}}</td>
-                <td>{{donor.district}}</td>
+                <td>{{volunteer.profile.first_name}} {{volunteer.profile.last_name}}</td>
+                <td>{{volunteer.district}}</td>
                 <td>
                     <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
@@ -36,10 +36,10 @@
         </div>
         <div class="modal-body">
             
-            <h4>{{donor.profile.first_name}} {{donor.profile.last_name}}</h4>
-            <h5>{{donor.phoneNo}}</h5>
-            <h6>{{donor.address}}</h6>
-            <p>{{donor.district}}</p>
+            <h4>{{volunteer.profile.first_name}} {{volunteer.profile.last_name}}</h4>
+            <h5>{{volunteer.phoneNo}}</h5>
+            <h6>{{volunteer.address}}</h6>
+            <p>{{volunteer.district}}</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -49,9 +49,9 @@
     </div>
   </div>
                 </td>
-                <td>{{donor.address}}</td>
-                <td>{{donor.phoneNo}}</td>
-                <td><a href="{% url 'appVolunteer:viewDonations' pk=donor.profile.id %}">View Donations</a></td>
+                <td>{{volunteer.address}}</td>
+                <td>{{volunteer.phoneNo}}</td>
+                <p>Links</p>
             </tr>
             {% endfor %}
         </table>
@@ -65,4 +65,5 @@
             <h5>{{donation.description}}</h5>
             <h6>{{donation.createDate|date:'M d,Y'}}</h6>
             <p>{{donation.status}}</p>
+            <!-- <td><a href="{% url 'appVolunteer:viewDonations' pk=donor.profile.id %}">View Donations</a></td> -->
             {% endfor %} -->
