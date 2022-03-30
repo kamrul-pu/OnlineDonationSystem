@@ -80,6 +80,8 @@ def userLogout(request):
 @login_required
 def userProfile(request):
     msg1 = False
+    if request.user.is_staff:
+        pass
     if request.user.is_superuser:
         msg=True
         # pass

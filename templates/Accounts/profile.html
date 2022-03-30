@@ -4,26 +4,6 @@
 {% if msg1 %}
 document.alert("Please login in admin panel")
 {% endif %}
-<div class="row">
-    <!-- {% for product in object_list %} -->
-    <div class="col-md-6 col-sm-12 col-lg-3">
-        <figure class="card card-product">
-            <div class="img-wrap">
-                <img src="/media/{{user.profile.profile_pic}}" alt="" style="width: 100%; height: 300px;">
-            </div>
-            <figcaption class="info-wrap">
-                <h6 class="title"><a href="">{{product.name}}</a></h6>
-                <div class="action-wrap">
-                    <div class="price-wrap h5">
-                        <span class="price-new">&#2547; </span>
-                        <span class="price-old"> <strike> &#2547;</strike></span>
-                    </div>
-                </div>
-            </figcaption>
-        </figure>
-    </div>
-    <!-- {% endfor %} -->
-</div>
 <div class="container">
     <div class="main-body">
 
@@ -36,14 +16,19 @@ document.alert("Please login in admin panel")
                     <div class="mt-3">
                       <h4>{{user.first_name}} {{user.last_name}}</h4>
                       <p class="text-secondary mb-1">Type: {% if user.profile.userType == 1 %} Donor{% elif user.profile.userType == 2 %}Volunteer{% else %}admin{% endif %}</p>
-                      <p class="text-muted font-size-sm">District: {{user.profile.district}}</p>
+                      <p class="text-muted font-size-sm">Verified: {{user.profile.verified}}</p>
                       {% if user.profile.userType == 1 %}
                       <a href="{% url 'appDonation:donation' %}" class="btn btn-primary">Donate Now</a>
-                      <!-- <a href="{% url 'appDonation:myDonations' pk=user.pk %}" class="btn btn-primary">My Donations</a> -->
+                      <!-- <a href="" class="btn btn-primary">My Donations</a> -->
                       <a href="{% url 'appDonation:viewVolunteer' %}" class="btn btn-primary">View Volunteer</a>
                       {% elif user.profile.userType == 2  %} 
                       <a href="{% url 'appVolunteer:viewDonors' %}" class="btn btn-outline-primary">View Donors</a>
                       {% endif %}
+                      {% if not verified %}
+                      {% for msg in messages %}
+                      <div class="alert alert-warning">{{msg}}</div>
+                      {% endfor %}
+                        {% endif %}
                       <!-- <button class="btn btn-outline-primary">Message</button> -->
                     </div>
                   </div>
