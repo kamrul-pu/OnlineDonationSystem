@@ -2,66 +2,71 @@
 {% load crispy_forms_tags %}
 {% block bodyblock %}
 <div class="row">
-  <div class="col-lg-12 ml-3"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"  style="width: 97%;">
-    Add Feedback
-  </button></div>
+  <div class="col-lg-12 ml-3"><button type="button" class="btn btn-primary" data-toggle="modal"
+      data-target="#exampleModalCenter" style="width: 97%;">
+      Add Feedback
+    </button></div>
 </div>
 
 <div class="container d-flex justify-content-center mt-100 mb-100">
   <div class="row">
-      <div class="col-md-12">
-          <div class="card">
-              <div class="card-body">
-                  <h4 class="card-title">Recent Comments</h4>
-                  <h6 class="card-subtitle">Latest Comments section by users</h6>
-              </div>
-              {% for feedback in feedbacks %}
-              <div class="comment-widgets m-b-20">
-                  <div class="d-flex flex-row comment-row">
-                      <div class="p-2"><span class="round"><img src="/media/{{feedback.user.profile.profile_pic}}" alt="user" width="50"></span></div>
-                      <div class="comment-text w-100">
-                          <h5>{{feedback.user.first_name}} {{feedback.user.last_name}}</h5>
-                          <div class="comment-footer"> <span class="date">{{feedback.feedbackDate}}</span> <span class="label label-info"></span> <span class="action-icons"> <a href="#" data-abc="true"><i class="fa fa-heart"></i></a> </span> </div>
-                          <p class="m-b-5 m-t-10"><strong>{{feedback.feedbackTopic}}</strong></p>
-                          <p class="m-b-5 m-t-10">{{feedback.feedback|linebreaks}}</p>
-                          <hr>
-                          <h4>Likes: {{feedback.like_feedback.all.count}}</h4>
-                          <a href="{% url 'appFeedback:like' pk=feedback.pk %}">
-                            <i class="fa-solid fa fa-heart fa-2x"></i>from 0
-                          </a>
-                      </div>
-                  </div>
-              </div>
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Recent Comments</h4>
+          <h6 class="card-subtitle">Latest Comments section by users</h6>
+        </div>
+        {% for feedback in feedbacks %}
+        <div class="comment-widgets m-b-20">
+          <div class="d-flex flex-row comment-row">
+            <div class="p-2"><span class="round"><img src="/media/{{feedback.user.profile.profile_pic}}" alt="user"
+                  width="50"></span></div>
+            <div class="comment-text w-100">
+              <h5>{{feedback.user.first_name}} {{feedback.user.last_name}}</h5>
+              <div class="comment-footer"> <span class="date">{{feedback.feedbackDate}}</span> <span
+                  class="label label-info"></span> <span class="action-icons"> <a href="#" data-abc="true"><i
+                      class="fa fa-heart"></i></a> </span> </div>
+              <p class="m-b-5 m-t-10"><strong>{{feedback.feedbackTopic}}</strong></p>
+              <p class="m-b-5 m-t-10">{{feedback.feedback|linebreaks}}</p>
               <hr>
-              {% endfor %}
+              <h4>Likes: {{feedback.like_feedback.all.count}}</h4>
+              <a href="{% url 'appFeedback:like' pk=feedback.pk %}">
+                <i class="fa-solid fa fa-heart fa-2x"></i>from 0
+              </a>
+            </div>
           </div>
-      </div>
-  </div>
-</div>
-<!-- Button trigger modal -->
-  
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Leave your Comment</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
         </div>
-        <div class="modal-body">
-            <form method="POST">
-                {% csrf_token %}
-                {{feedback_form|crispy}}
-                <input type="submit" value="Submit" class="btn btn-primary">
-            </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <!-- <button type="button" class="btn btn-primary"><input type="submit" value="Submit" class="btn btn-primary"></button> -->
-        </div>
+        <hr>
+        {% endfor %}
       </div>
     </div>
   </div>
+</div>
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Leave your Comment</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST">
+          {% csrf_token %}
+          {{feedback_form|crispy}}
+          <input type="submit" value="Submit" class="btn btn-primary">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <!-- <button type="button" class="btn btn-primary"><input type="submit" value="Submit" class="btn btn-primary"></button> -->
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

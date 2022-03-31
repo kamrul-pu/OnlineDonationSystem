@@ -1,72 +1,78 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block bodyblock %}
-    <div class='container'>
-        <div class="row">
-            <div class="col text-dark mt-1 "> 
+<div class='container'>
+  <div class="row">
+    <div class="col text-dark mt-1 ">
 
-                <img src="{% static 'image/image1.jpg' %}" class="rounded" alt="charity" width="540" height="430">
-
-            </div>
-            <div class="col "> 
-                <div class="mt-1 p-5 bg-light text-primary rounded">
-                    <h1>We believe that we can save more life with you.</h1>
-                    <p>We provide trusted donation channel for peoples of whole country to support people and organizers</p>
-                </div>
-                <div class="mt-4 pt-5">
-
-                  <a href="#"><button type="button" class=" btn-lg btn btn-outline-primary "> Donate now </button></a>
-                 
-                  
-
-                </div>
-            </div>
-        </div>
+      <img src="{% static 'image/image1.jpg' %}" class="rounded" alt="charity" width="540" height="430">
 
     </div>
-    <div class="container">
-    <header class="bg-light text-dark text-center text-md-right p-5 my-5 ">
-      <!-- <h1 class="text-primary">We Believe That We Can...</h1>
+    <div class="col ">
+      <div class="mt-1 p-5 bg-light text-primary rounded">
+        <h1>We believe that we can save more life with you.</h1>
+        <p>We provide trusted donation channel for peoples of whole country to support people and organizers</p>
+      </div>
+      <div class="mt-4 pt-5">
+
+        <a href="#"><button type="button" class=" btn-lg btn btn-outline-primary "> Donate now </button></a>
+
+
+
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="container">
+  <header class="bg-light text-dark text-center text-md-right p-5 my-5 ">
+    <!-- <h1 class="text-primary">We Believe That We Can...</h1>
        -->
-       <h1 class="text-primary text-center">An approach built for “nonprofits in the middle”</h1>
-    </header>
-    
-    <main>
-      
-      <div class="row ">
-        <div class="col-lg-4 text-center rounded   ">
-          
-          <i class="rounded-circle p-5 bg-light fa-solid fa-circle-dollar-to-slot" style="color: black; font-size: 3rem;"></i>
-          <!-- <i class="rounded-circle p-5 bg-light fa-solid fa-handshake-angle"></i> -->
-          <!-- <i class="fa-solid fa-circle-dollar-to-slot rounded-circle p-5 fa-solid"></i> -->
-          <div class="bg-light m-3 p-2">
-            <h2 class="text-primary rounded text-center mt-3"><a class="nav-link text-primary " href=""{% url 'accounts:registerUser' %}"">Start Donating</a></h2>
-            <p class="  mt-1 p-3" style="text-align: justify;">Donate your surplus income to the poor people for serve the Humanity.</p>
-          </div>
-        </div>
-        <div class="col-lg-4 text-center rounded   ">
-          <i class="rounded-circle p-5 bg-light fa-solid fa-handshake-angle" style="color: black; font-size: 3rem;"></i>
-          <div class="bg-light m-3 p-2">
-            <h2 class="text-primary rounded text-center mt-3"><a class="nav-link text-primary " href="{% url 'accounts:registerUser' %}">Become Volunteer</a></h2>
-            <p class="  mx-1 p-3">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos explicabo officia sunt nobis, aspernatur possimus in maiores repellat aperiam. Sequi.</p>
-          </div>
-        </div>
-        <div class=" col-lg-4 text-center rounded ">
-          <!-- <i class="rounded-circle p-5 bg-light fa-solid fa-handshake-angle"></i> -->
-          <i class="rounded-circle p-5 bg-light fa-solid fa-hand-holding-heart" style="color: red; font-size: 3rem;"></i>
-          <!-- <i class='fas fa-hand-holding-heart' style='font-size:3rem;color:red'></i> -->
-          <div class="bg-light rounded m-3 p-2">
-            <h2 class="text-primary text-center mt-3">Quick Fundraise</h2>
-            <p class="  mx-1 p-3">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos explicabo officia sunt nobis, aspernatur possimus in maiores repellat aperiam. Sequi.</p>
-          </div>
-          
-          
+    <h1 class="text-primary text-center">An approach built for “nonprofits in the middle”</h1>
+  </header>
+
+  <main>
+
+    <div class="row ">
+      <div class="col-lg-4 text-center rounded   ">
+
+        <i class="rounded-circle p-5 bg-light fa-solid fa-circle-dollar-to-slot"
+          style="color: black; font-size: 3rem;"></i>
+        <!-- <i class="rounded-circle p-5 bg-light fa-solid fa-handshake-angle"></i> -->
+        <!-- <i class="fa-solid fa-circle-dollar-to-slot rounded-circle p-5 fa-solid"></i> -->
+        <div class="bg-light m-3 p-2">
+          <h2 class="text-primary rounded text-center mt-3"><a class="nav-link text-primary " href="" {%
+              url 'accounts:registerUser' %}"">Start Donating</a></h2>
+          <p class="  mt-1 p-3" style="text-align: justify;">Donate your surplus income to the poor people for serve the
+            Humanity.</p>
         </div>
       </div>
-      </main>
-      <footer class="my-5 text-center">
-        <a href="#"> <button type="button" class=" btn-lg btn btn-outline-primary"> Donate now </button></a>
-      </footer>
-    
+      <div class="col-lg-4 text-center rounded   ">
+        <i class="rounded-circle p-5 bg-light fa-solid fa-handshake-angle" style="color: black; font-size: 3rem;"></i>
+        <div class="bg-light m-3 p-2">
+          <h2 class="text-primary rounded text-center mt-3"><a class="nav-link text-primary "
+              href="{% url 'accounts:registerUser' %}">Become Volunteer</a></h2>
+          <p class="  mx-1 p-3">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos explicabo officia sunt
+            nobis, aspernatur possimus in maiores repellat aperiam. Sequi.</p>
+        </div>
+      </div>
+      <div class=" col-lg-4 text-center rounded ">
+        <!-- <i class="rounded-circle p-5 bg-light fa-solid fa-handshake-angle"></i> -->
+        <i class="rounded-circle p-5 bg-light fa-solid fa-hand-holding-heart" style="color: red; font-size: 3rem;"></i>
+        <!-- <i class='fas fa-hand-holding-heart' style='font-size:3rem;color:red'></i> -->
+        <div class="bg-light rounded m-3 p-2">
+          <h2 class="text-primary text-center mt-3">Quick Fundraise</h2>
+          <p class="  mx-1 p-3">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos explicabo officia sunt
+            nobis, aspernatur possimus in maiores repellat aperiam. Sequi.</p>
+        </div>
+
+
+      </div>
+    </div>
+  </main>
+  <footer class="my-5 text-center">
+    <a href="#"> <button type="button" class=" btn-lg btn btn-outline-primary"> Donate now </button></a>
+  </footer>
+
 </div>
 {% endblock %}

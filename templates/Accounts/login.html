@@ -1,29 +1,29 @@
 {% extends 'base.html' %}
 {% block bodyblock %}
 
-<div class="row">
-    <div class="col-12" style="margin-top: 80px;">
-        <div class="col-6" style="margin: 0 auto; border: 1px solid black; text-align: center; padding: 30px; ">
-            <h3>Please Login</h3>
-            {% if msg %}
-            <div class="col-12">
-        <div class="alert alert-warning">
-        {% for message in messages %}
-        {{message}}
-        {% endfor %}
-    </div>
-</div>
-{% endif %}
+<div class="row mt-5">
+    <div class="col-lg-6 col-sm-12 col-md-8"
+        style=" border: 1px solid black; text-align: center; padding: 30px; margin: 0 auto;">
+        <h3>Please Login</h3>
+        {% if msg %}
+        <div class="col-12">
+            <div class="alert alert-warning">
+                {% for message in messages %}
+                {{message}}
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
         <form method="POST">
             <label for="username">Username:</label>
             <input type="text" name="username" placeholder="Enter Username" required class="form-control">
             <label for="password">Password: </label>
-            <input type="password" name="password" id="password" placeholder="Enter Password" required class="form-control">
+            <input type="password" name="password" id="password" placeholder="Enter Password" required
+                class="form-control">
             {% csrf_token %}
             <br>
             <input type="submit" value="Login" class="btn btn-success">
         </form>
-        </div>
     </div>
 </div>
 
