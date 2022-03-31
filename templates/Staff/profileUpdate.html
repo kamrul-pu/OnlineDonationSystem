@@ -1,0 +1,9 @@
+{% extends 'Staff/staff.html' %}
+{% load crispy_forms_tags %}
+{% block staffblock %}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{profile_form|crispy}}
+    <input type="submit" value="Update" class="btn btn-warning">
+</form>
+{% endblock %}

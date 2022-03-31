@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'AppDonation',
     'AppVolunteer',
     'AppFeedback',
+    'AppStaff',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [

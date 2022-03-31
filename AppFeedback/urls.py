@@ -5,4 +5,5 @@ app_name="appFeedback"
 urlpatterns = [
     path('',views.feedback,name='feedback'),
     path('like/<int:pk>/',views.likeFeedback,name='like'),
+    path('unlike/<pk>/',views.unlikeFeedback,name='unlike'),
 ]

@@ -81,7 +81,7 @@ def userLogout(request):
 def userProfile(request):
     msg1 = False
     if request.user.is_staff:
-        pass
+        return HttpResponseRedirect(reverse('appStaff:staff'))
     if request.user.is_superuser:
         msg=True
         # pass

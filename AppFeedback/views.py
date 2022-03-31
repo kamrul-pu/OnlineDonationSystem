@@ -28,12 +28,14 @@ def likeFeedback(request,pk):
     if not already_liked:
         liked_post = Likes(feedback=feedback,user=request.user)
         liked_post.save()
+    else:
+        already_liked.delete()
     return HttpResponseRedirect(reverse('appFeedback:feedback'))
     # return HttpResponse("Liked")
 
 @login_required
 def unlikeFeedback(request,pk):
-    feedback = Feedback.objects.filter(pk=pk)
+    feedback = Feedback.objects.get(pk=pk)
     already_liked = Likes.objects.filter(feedback=feedback,user=request.user)
     already_liked.delete()
     return HttpResponseRedirect(reverse('appFeedback:feedback'))
