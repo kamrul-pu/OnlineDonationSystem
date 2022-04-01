@@ -26,28 +26,31 @@
 
 <body>
   <div class="container pt-1">
-    <div id="mySidepanel" class="sidepanel">
+    <div id="mySidepanel" class="sidepanel rounded">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
       <a href="{% url 'appStaff:staff' %}">Staff Page</a>
-      <a href="{% url 'home' %}">Home</a>
       <a href="{% url 'appStaff:pendingProfile' %}">Pending Profile</a>
       <a href="{% url 'appStaff:viewDonors' %}">View Donors</a>
       <a href="{% url 'appStaff:viewVolunteer' %}">View Volunteer</a>
+      <hr class="dotted-hr">
+      <a href="{% url 'home' %}">Back To Home</a>
       <a href="#">Contact</a>
+      <a href="{% url 'accounts:userLogout' %}">Logout</a>
       <a href="#"></a>
     </div>
 
-    <button class="openbtn" onclick="openNav()">☰ Toggle Sidepanel</button>
-    <div class="container pt-1">
+    <button class="openbtn rounded" onclick="openNav()">☰ My Functions</button>
+    <div class="container pt-1 mt-2">
       {% block staffblock %}
       <div class="row">
         <div class="col-lg-6 mb-2">
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Donors</h4>
-              <p class="card-text">Some example text. Some example text.</p>
-              <a href="#" class="card-link">Card link</a>
-              <a href="#" class="card-link">Another link</a>
+              <hr>
+              <p class="card-text"> <strong> <b>Number of Donors: {{donor}}</b> </strong> </p>
+              <hr>
+              <a href="{% url 'appStaff:viewDonors' %}" class="btn btn-info">Donors</a>
             </div>
           </div>
         </div>
@@ -55,9 +58,10 @@
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Volunteers</h4>
-              <p class="card-text">Some example text. Some example text.</p>
-              <a href="#" class="card-link">Card link</a>
-              <a href="#" class="card-link">Another link</a>
+              <hr>
+              <p class="card-text"> <strong> <b>Number of Volunteers: {{volunteer}}</b> </strong> </p>
+              <hr>
+              <a href="{% url 'appStaff:viewVolunteer' %}" class="btn btn-info">Volunteers</a>
             </div>
           </div>
         </div>

@@ -11,7 +11,9 @@ from AppStaff.forms import ProfileUpdateForm
 @login_required
 def staff(request):
     if(request.user.is_staff):
-        diction = {'title':'Staff Functionalities'}
+        donors = Profile.objects.filter(userType=1)
+        volunters = Profile.objects.filter(userType=2)
+        diction = {'title':'Staff Functionalities','donor':len(donors),'volunteer':len(volunters)}
         return render(request,'Staff/staff.html',context=diction)
     else:
         return HttpResponseRedirect(reverse('accounts:userProfile'))
