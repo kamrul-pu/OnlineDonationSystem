@@ -17,6 +17,7 @@ class Profile(models.Model):
     uType = (
         (1,'Donor'),
         (2,'Volunteer'),
+        (3,'Staff')
     )
     userType = models.IntegerField(choices=uType)
     phoneNo = models.CharField(max_length=15)

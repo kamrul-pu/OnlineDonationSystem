@@ -8,7 +8,6 @@
         <th>#</th>
         <th>Name</th>
         <th>District</th>
-        <th>View Profile</th>
         <th>Address</th>
         <th>Phone</th>
         <!-- <th>View Donation</th> -->
@@ -18,38 +17,6 @@
         <td>{{forloop.counter}}</td>
         <td>{{volunteer.profile.first_name}} {{volunteer.profile.last_name}}</td>
         <td>{{volunteer.district}}</td>
-        <td>
-          <!-- Button trigger modal -->
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-            View Profile
-          </button>
-
-          <!-- Modal -->
-          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">View Donations</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-
-                  <h4>{{volunteer.profile.first_name}} {{volunteer.profile.last_name}}</h4>
-                  <h5>{{volunteer.phoneNo}}</h5>
-                  <h6>{{volunteer.address}}</h6>
-                  <p>{{volunteer.district}}</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </td>
         <td>{{volunteer.address}}</td>
         <td>{{volunteer.phoneNo}}</td>
         <p>Links</p>
